@@ -1,0 +1,44 @@
+{
+  "collectionName": "components_content_headings",
+  "info": {
+    "displayName": "Heading"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "component": {
+      "type": "enumeration",
+      "enum": [
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6"
+      ],
+      "default": "h1"
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": [
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "subtitle1",
+        "subtitle2",
+        "body1",
+        "body2",
+        "BUTTON",
+        "caption",
+        "OVERLINE"
+      ],
+      "default": "h2"
+    }
+  }
+}

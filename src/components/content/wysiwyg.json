@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_content_wysiwygs",
+  "info": {
+    "displayName": "WYSIWYG",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "blocks",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "icons",
+  "info": {
+    "singularName": "icon",
+    "pluralName": "icons",
+    "displayName": "Icon"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "family": {
+      "type": "enumeration",
+      "enum": [
+        "MUI",
+        "Font Awesome"
+      ],
+      "default": "MUI"
+    }
+  }
+}

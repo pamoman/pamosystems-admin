@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_shared_font_awesomes",
+  "info": {
+    "displayName": "Font Awesome"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "enumeration",
+      "enum": [
+        "house",
+        "address-card"
+      ],
+      "default": "house",
+      "required": true
+    }
+  }
+}

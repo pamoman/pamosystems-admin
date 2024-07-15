@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_shared_employees",
+  "info": {
+    "displayName": "employee"
+  },
+  "options": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}

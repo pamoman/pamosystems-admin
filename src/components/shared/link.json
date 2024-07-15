@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_shared_links",
+  "info": {
+    "displayName": "Link"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "path": {
+      "type": "string",
+      "default": "/",
+      "regex": "^[^åöäÅÖÄA-Z?.,&]*$",
+      "required": true
+    },
+    "icon": {
+      "type": "enumeration",
+      "enum": [
+        "house",
+        "address-card"
+      ],
+      "default": "house"
+    },
+    "location": {
+      "type": "enumeration",
+      "enum": [
+        "internal",
+        "external"
+      ]
+    }
+  }
+}
