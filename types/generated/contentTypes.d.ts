@@ -472,8 +472,12 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    parent: Schema.Attribute.Relation<'oneToOne', 'api::category.category'>;
     products: Schema.Attribute.Relation<'manyToMany', 'api::product.product'>;
+    parents: Schema.Attribute.Relation<'manyToMany', 'api::category.category'>;
+    subcategories: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::category.category'
+    >;
     page: Schema.Attribute.DynamicZone<
       ['page.icon', 'page.hero', 'page.heading']
     > &
@@ -803,6 +807,8 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         };
       }> &
       Schema.Attribute.DefaultTo<false>;
+    parent: Schema.Attribute.Relation<'manyToOne', 'api::page.page'>;
+    subpages: Schema.Attribute.Relation<'oneToMany', 'api::page.page'>;
     page: Schema.Attribute.DynamicZone<
       ['page.icon', 'page.hero', 'page.heading']
     > &
@@ -930,7 +936,22 @@ export interface ApiProductPageProductPage extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    hide: Schema.Attribute.Boolean &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<false>;
     product: Schema.Attribute.Relation<'manyToOne', 'api::product.product'>;
+    parents: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::product-page.product-page'
+    >;
+    subpages: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::product-page.product-page'
+    >;
     page: Schema.Attribute.DynamicZone<
       ['page.icon', 'page.hero', 'page.heading']
     > &

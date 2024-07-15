@@ -45,6 +45,18 @@
       "type": "boolean",
       "default": false
     },
+    "parent": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::page.page",
+      "inversedBy": "subpages"
+    },
+    "subpages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::page.page",
+      "mappedBy": "parent"
+    },
     "page": {
       "pluginOptions": {
         "i18n": {
