@@ -39,6 +39,15 @@
         }
       }
     },
+    "show_categories": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "boolean",
+      "default": false
+    },
     "footer": {
       "type": "component",
       "repeatable": false,

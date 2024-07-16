@@ -472,6 +472,12 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    slug: Schema.Attribute.UID<'name'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     products: Schema.Attribute.Relation<'manyToMany', 'api::product.product'>;
     parents: Schema.Attribute.Relation<'manyToMany', 'api::category.category'>;
     subcategories: Schema.Attribute.Relation<
@@ -848,6 +854,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     singularName: 'product';
     pluralName: 'products';
     displayName: 'Product';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -860,6 +867,12 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   attributes: {
     name: Schema.Attribute.String &
       Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Schema.Attribute.UID<'name'> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1015,6 +1028,13 @@ export interface ApiWebsiteWebsite extends Struct.SingleTypeSchema {
           localized: false;
         };
       }>;
+    show_categories: Schema.Attribute.Boolean &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<false>;
     footer: Schema.Attribute.Component<'global.footer', false> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {

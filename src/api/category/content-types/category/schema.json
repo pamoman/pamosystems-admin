@@ -26,6 +26,15 @@
       "required": true,
       "unique": true
     },
+    "slug": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "uid",
+      "targetField": "name"
+    },
     "products": {
       "type": "relation",
       "relation": "manyToMany",
