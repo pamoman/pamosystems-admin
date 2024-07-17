@@ -16,7 +16,7 @@
     }
   },
   "attributes": {
-    "title": {
+    "name": {
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -33,7 +33,7 @@
         }
       },
       "type": "uid",
-      "targetField": "title",
+      "targetField": "name",
       "required": true
     },
     "hide": {
