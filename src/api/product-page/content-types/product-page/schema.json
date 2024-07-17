@@ -31,7 +31,8 @@
           "localized": true
         }
       },
-      "type": "string"
+      "type": "uid",
+      "targetField": "name"
     },
     "hide": {
       "pluginOptions": {
