@@ -1,80 +1,89 @@
-import type { Struct, Schema } from '@strapi/strapi';
+import type { Schema, Struct } from '@strapi/strapi';
 
-export interface SharedMui extends Struct.ComponentSchema {
-  collectionName: 'components_shared_muis';
+export interface ContentHeading extends Struct.ComponentSchema {
+  collectionName: 'components_content_headings';
   info: {
-    displayName: 'MUI';
+    displayName: 'Heading';
   };
   attributes: {
-    name: Schema.Attribute.Enumeration<['house', 'address-card']> &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<'house'>;
+    component: Schema.Attribute.Enumeration<
+      ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+    > &
+      Schema.Attribute.DefaultTo<'h1'>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    variant: Schema.Attribute.Enumeration<
+      [
+        'h1',
+        'h2',
+        'h3',
+        'h4',
+        'h5',
+        'h6',
+        'subtitle1',
+        'subtitle2',
+        'body1',
+        'body2',
+        'BUTTON',
+        'caption',
+        'OVERLINE',
+      ]
+    > &
+      Schema.Attribute.DefaultTo<'h2'>;
   };
 }
 
-export interface SharedLink extends Struct.ComponentSchema {
-  collectionName: 'components_shared_links';
+export interface ContentImage extends Struct.ComponentSchema {
+  collectionName: 'components_content_images';
   info: {
-    displayName: 'Link';
+    displayName: 'Image';
   };
   attributes: {
-    label: Schema.Attribute.String & Schema.Attribute.Required;
-    path: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<'/'>;
-    icon: Schema.Attribute.Enumeration<['house', 'address-card']> &
-      Schema.Attribute.DefaultTo<'house'>;
-    location: Schema.Attribute.Enumeration<['internal', 'external']>;
+    image: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
   };
 }
 
-export interface SharedFontAwesome extends Struct.ComponentSchema {
-  collectionName: 'components_shared_font_awesomes';
+export interface ContentSlideshow extends Struct.ComponentSchema {
+  collectionName: 'components_content_slideshows';
   info: {
-    displayName: 'Font Awesome';
-  };
-  attributes: {
-    name: Schema.Attribute.Enumeration<['house', 'address-card']> &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<'house'>;
-  };
-}
-
-export interface SharedEmployee extends Struct.ComponentSchema {
-  collectionName: 'components_shared_employees';
-  info: {
-    displayName: 'employee';
-  };
-  attributes: {
-    user: Schema.Attribute.Relation<
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
-  };
-}
-
-export interface PageIcon extends Struct.ComponentSchema {
-  collectionName: 'components_page_icons';
-  info: {
-    displayName: 'Icon';
     description: '';
+    displayName: 'Slideshow';
   };
   attributes: {
-    icon: Schema.Attribute.Relation<'oneToOne', 'api::icon.icon'>;
+    images: Schema.Attribute.Media<'images' | 'files', true> &
+      Schema.Attribute.Required;
   };
 }
 
-export interface PageHero extends Struct.ComponentSchema {
-  collectionName: 'components_page_heroes';
+export interface ContentVideo extends Struct.ComponentSchema {
+  collectionName: 'components_content_videos';
   info: {
-    displayName: 'Hero';
+    displayName: 'Video';
   };
   attributes: {
-    media: Schema.Attribute.Media<'images' | 'files' | 'videos', true> &
+    video: Schema.Attribute.Media<'files' | 'videos'> &
       Schema.Attribute.Required;
-    heading: Schema.Attribute.Component<'page.heading', false> &
-      Schema.Attribute.Required;
-    links: Schema.Attribute.Component<'shared.link', true>;
+  };
+}
+
+export interface ContentWysiwyg extends Struct.ComponentSchema {
+  collectionName: 'components_content_wysiwygs';
+  info: {
+    description: '';
+    displayName: 'WYSIWYG';
+  };
+  attributes: {
+    content: Schema.Attribute.Blocks & Schema.Attribute.Required;
+  };
+}
+
+export interface GlobalFooter extends Struct.ComponentSchema {
+  collectionName: 'components_global_footers';
+  info: {
+    displayName: 'footer';
+  };
+  attributes: {
+    copyright: Schema.Attribute.String;
   };
 }
 
@@ -106,109 +115,100 @@ export interface PageHeading extends Struct.ComponentSchema {
   };
 }
 
-export interface GlobalFooter extends Struct.ComponentSchema {
-  collectionName: 'components_global_footers';
+export interface PageHero extends Struct.ComponentSchema {
+  collectionName: 'components_page_heroes';
   info: {
-    displayName: 'footer';
+    displayName: 'Hero';
   };
   attributes: {
-    copyright: Schema.Attribute.String;
+    heading: Schema.Attribute.Component<'page.heading', false> &
+      Schema.Attribute.Required;
+    links: Schema.Attribute.Component<'shared.link', true>;
+    media: Schema.Attribute.Media<'images' | 'files' | 'videos', true> &
+      Schema.Attribute.Required;
   };
 }
 
-export interface ContentWysiwyg extends Struct.ComponentSchema {
-  collectionName: 'components_content_wysiwygs';
+export interface PageIcon extends Struct.ComponentSchema {
+  collectionName: 'components_page_icons';
   info: {
-    displayName: 'WYSIWYG';
     description: '';
+    displayName: 'Icon';
   };
   attributes: {
-    content: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    icon: Schema.Attribute.Relation<'oneToOne', 'api::icon.icon'>;
   };
 }
 
-export interface ContentVideo extends Struct.ComponentSchema {
-  collectionName: 'components_content_videos';
+export interface SharedEmployee extends Struct.ComponentSchema {
+  collectionName: 'components_shared_employees';
   info: {
-    displayName: 'Video';
+    displayName: 'employee';
   };
   attributes: {
-    video: Schema.Attribute.Media<'files' | 'videos'> &
-      Schema.Attribute.Required;
+    user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
   };
 }
 
-export interface ContentSlideshow extends Struct.ComponentSchema {
-  collectionName: 'components_content_slideshows';
+export interface SharedFontAwesome extends Struct.ComponentSchema {
+  collectionName: 'components_shared_font_awesomes';
   info: {
-    displayName: 'Slideshow';
-    description: '';
+    displayName: 'Font Awesome';
   };
   attributes: {
-    images: Schema.Attribute.Media<'images' | 'files', true> &
-      Schema.Attribute.Required;
+    name: Schema.Attribute.Enumeration<['house', 'address-card']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'house'>;
   };
 }
 
-export interface ContentImage extends Struct.ComponentSchema {
-  collectionName: 'components_content_images';
+export interface SharedLink extends Struct.ComponentSchema {
+  collectionName: 'components_shared_links';
   info: {
-    displayName: 'Image';
+    displayName: 'Link';
   };
   attributes: {
-    image: Schema.Attribute.Media<'images' | 'files'> &
-      Schema.Attribute.Required;
+    icon: Schema.Attribute.Enumeration<['house', 'address-card']> &
+      Schema.Attribute.DefaultTo<'house'>;
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+    location: Schema.Attribute.Enumeration<['internal', 'external']>;
+    path: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'/'>;
   };
 }
 
-export interface ContentHeading extends Struct.ComponentSchema {
-  collectionName: 'components_content_headings';
+export interface SharedMui extends Struct.ComponentSchema {
+  collectionName: 'components_shared_muis';
   info: {
-    displayName: 'Heading';
+    displayName: 'MUI';
   };
   attributes: {
-    title: Schema.Attribute.String & Schema.Attribute.Required;
-    component: Schema.Attribute.Enumeration<
-      ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
-    > &
-      Schema.Attribute.DefaultTo<'h1'>;
-    variant: Schema.Attribute.Enumeration<
-      [
-        'h1',
-        'h2',
-        'h3',
-        'h4',
-        'h5',
-        'h6',
-        'subtitle1',
-        'subtitle2',
-        'body1',
-        'body2',
-        'BUTTON',
-        'caption',
-        'OVERLINE',
-      ]
-    > &
-      Schema.Attribute.DefaultTo<'h2'>;
+    name: Schema.Attribute.Enumeration<['house', 'address-card']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'house'>;
   };
 }
 
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
-      'shared.mui': SharedMui;
-      'shared.link': SharedLink;
-      'shared.font-awesome': SharedFontAwesome;
-      'shared.employee': SharedEmployee;
-      'page.icon': PageIcon;
-      'page.hero': PageHero;
-      'page.heading': PageHeading;
-      'global.footer': GlobalFooter;
-      'content.wysiwyg': ContentWysiwyg;
-      'content.video': ContentVideo;
-      'content.slideshow': ContentSlideshow;
-      'content.image': ContentImage;
       'content.heading': ContentHeading;
+      'content.image': ContentImage;
+      'content.slideshow': ContentSlideshow;
+      'content.video': ContentVideo;
+      'content.wysiwyg': ContentWysiwyg;
+      'global.footer': GlobalFooter;
+      'page.heading': PageHeading;
+      'page.hero': PageHero;
+      'page.icon': PageIcon;
+      'shared.employee': SharedEmployee;
+      'shared.font-awesome': SharedFontAwesome;
+      'shared.link': SharedLink;
+      'shared.mui': SharedMui;
     }
   }
 }
